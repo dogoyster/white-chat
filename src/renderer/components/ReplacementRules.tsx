@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ReplacementRule } from '../types/replacement';
+import { useSidebarContext } from '../context/SidebarContext';
 import './ReplacementRules.css';
 
 interface ReplacementRulesProps {
@@ -11,6 +12,7 @@ const ReplacementRules: React.FC<ReplacementRulesProps> = ({
   rules,
   onRulesChange,
 }) => {
+  const { isCompact } = useSidebarContext();
   const [editingRule, setEditingRule] = useState<ReplacementRule | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
 
@@ -54,12 +56,10 @@ const ReplacementRules: React.FC<ReplacementRulesProps> = ({
     let updatedRules: ReplacementRule[];
 
     if (existingIndex >= 0) {
-      // 기존 규칙 수정
       updatedRules = rules.map(rule =>
         rule.id === editingRule.id ? editingRule : rule
       );
     } else {
-      // 새 규칙 추가
       updatedRules = [...rules, editingRule];
     }
 
@@ -74,52 +74,70 @@ const ReplacementRules: React.FC<ReplacementRulesProps> = ({
   };
 
   return (
-    <div className="replacement-rules">
-      <div className="rules-header">
-        <h3>치환 규칙</h3>
-        <button className="add-rule-btn" onClick={handleAddRule}>
-          + 규칙 추가
-        </button>
+    <div className={`replacement-rules ${isCompact ? 'compact' : ''}`}>
+      <div className={`rules-header ${isCompact ? 'compact' : ''}`}>
+        <h3>{isCompact ? '규칙' : '치환 규칙'}</h3>
+        {!isCompact && (
+          <button className="add-rule-btn" onClick={handleAddRule}>
+            + 규칙 추가
+          </button>
+        )}
       </div>
 
       <div className="rules-list">
         {rules.map(rule => (
-          <div key={rule.id} className={`rule-item ${!rule.isEnabled ? 'disabled' : ''}`}>
-            <div className="rule-header">
-              <label className="rule-toggle">
-                <input
-                  type="checkbox"
-                  checked={rule.isEnabled}
-                  onChange={() => handleToggleRule(rule.id)}
-                />
-                <span className="toggle-slider"></span>
-              </label>
-              <div className="rule-info">
-                <div className="rule-original">{rule.original}</div>
-                <div className="rule-replacement">→ {rule.replacement}</div>
-                {rule.description && (
-                  <div className="rule-description">{rule.description}</div>
-                )}
+          <div key={rule.id} className={`rule-item ${!rule.isEnabled ? 'disabled' : ''} ${isCompact ? 'compact' : ''}`}>
+            {isCompact ? (
+              <div className="rule-compact">
+                <div className="rule-original-compact">{rule.original}</div>
+                <label className="rule-toggle">
+                  <input
+                    type="checkbox"
+                    checked={rule.isEnabled}
+                    onChange={() => handleToggleRule(rule.id)}
+                  />
+                  <span className="toggle-slider"></span>
+                </label>
               </div>
-              <div className="rule-actions">
-                <button
-                  className="edit-btn"
-                  onClick={() => handleEditRule(rule)}
-                >
-                  수정
-                </button>
-                <button
-                  className="delete-btn"
-                  onClick={() => handleDeleteRule(rule.id)}
-                >
-                  삭제
-                </button>
-              </div>
-            </div>
-            <div className="rule-flags">
-              {rule.isRegex && <span className="flag regex">정규식</span>}
-              {rule.caseSensitive && <span className="flag case">대소문자 구분</span>}
-            </div>
+            ) : (
+              <>
+                <div className="rule-header">
+                  <label className="rule-toggle">
+                    <input
+                      type="checkbox"
+                      checked={rule.isEnabled}
+                      onChange={() => handleToggleRule(rule.id)}
+                    />
+                    <span className="toggle-slider"></span>
+                  </label>
+                  <div className="rule-info">
+                    <div className="rule-original">{rule.original}</div>
+                    <div className="rule-replacement">→ {rule.replacement}</div>
+                    {rule.description && (
+                      <div className="rule-description">{rule.description}</div>
+                    )}
+                  </div>
+                  <div className="rule-actions">
+                    <button
+                      className="edit-btn"
+                      onClick={() => handleEditRule(rule)}
+                    >
+                      수정
+                    </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => handleDeleteRule(rule.id)}
+                    >
+                      삭제
+                    </button>
+                  </div>
+                </div>
+                <div className="rule-flags">
+                  {rule.isRegex && <span className="flag regex">정규식</span>}
+                  {rule.caseSensitive && <span className="flag case">대소문자 구분</span>}
+                </div>
+              </>
+            )}
           </div>
         ))}
       </div>

@@ -1,0 +1,141 @@
+.sidebar-panel {
+  background-color: #252526;
+  border-right: 1px solid #3e3e42;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  position: relative;
+}
+
+.sidebar-panel.resizing {
+  transition: none;
+}
+
+.sidebar-panel.collapsed {
+  width: 48px;
+}
+
+.sidebar-tabs {
+  display: flex;
+  flex-direction: column;
+  background-color: #333333;
+  border-bottom: 1px solid #3e3e42;
+  min-height: 48px;
+}
+
+.sidebar-tabs.collapsed {
+  min-height: 48px;
+}
+
+.sidebar-content.collapsed {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.collapsed-info {
+  text-align: center;
+  color: #cccccc;
+}
+
+.collapsed-tab-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.collapsed-icon {
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.collapsed-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+.sidebar-tab {
+  background: none;
+  border: none;
+  color: #cccccc;
+  padding: 0.75rem;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #2d2d30;
+  min-height: 48px;
+}
+
+.sidebar-tab:hover {
+  background-color: #404040;
+  color: #ffffff;
+}
+
+.sidebar-tab.active {
+  background-color: #007acc;
+  color: #ffffff;
+}
+
+.tab-icon {
+  font-size: 1.1rem;
+}
+
+.collapse-btn,
+.expand-btn {
+  background: none;
+  border: none;
+  color: #cccccc;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: color 0.2s ease;
+  margin-top: auto;
+  border-top: 1px solid #3e3e42;
+}
+
+.collapse-btn:hover,
+.expand-btn:hover {
+  color: #ffffff;
+  background-color: #404040;
+}
+
+.sidebar-content {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #252526;
+}
+
+.sidebar-content > * {
+  display: block;
+}
+
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: -4px;
+  width: 8px;
+  height: 100%;
+  cursor: col-resize;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+  z-index: 10;
+}
+
+.resize-handle:hover {
+  background-color: #007acc;
+}
+
+.resize-handle:active {
+  background-color: #005a9e;
+} 

@@ -27,26 +27,17 @@
   overflow: hidden;
 }
 
-.left-panel {
+.main-content {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  border-right: 1px solid #3e3e42;
+  flex-direction: row;
 }
 
 .editor-container {
   flex: 1;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #3e3e42;
-}
-
-.rules-panel {
-  flex: 0 0 auto;
-  max-height: 400px;
-  overflow-y: auto;
-  padding: 1rem;
-  background-color: #1e1e1e;
+  border-right: 1px solid #3e3e42;
 }
 
 .viewer-container {

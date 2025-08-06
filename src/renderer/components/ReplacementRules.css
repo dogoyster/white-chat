@@ -1,8 +1,16 @@
 .replacement-rules {
-  background-color: #2d2d30;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.replacement-rules.compact {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  height: 100% !important;
 }
 
 .rules-header {
@@ -10,6 +18,15 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+}
+
+.rules-header.compact {
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.rules-header.compact h3 {
+  font-size: 0.9rem;
 }
 
 .rules-header h3 {
@@ -34,8 +51,15 @@
 }
 
 .rules-list {
-  max-height: 300px;
+  flex: 1;
   overflow-y: auto;
+  min-height: 0;
+}
+
+.rules-list.compact {
+  max-height: none !important;
+  overflow: hidden !important;
+  height: 100% !important;
 }
 
 .rule-item {
@@ -44,6 +68,35 @@
   padding: 0.75rem;
   margin-bottom: 0.5rem;
   border-left: 3px solid #007acc;
+}
+
+.rule-item.compact {
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.125rem;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  height: auto;
+  overflow: hidden;
+}
+
+.rule-compact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.rule-original-compact {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  font-size: 0.8rem;
+  color: #ffffff;
 }
 
 .rule-item.disabled {
@@ -110,6 +163,11 @@ input:checked + .toggle-slider:before {
   color: #ffffff;
   font-weight: 500;
   font-size: 0.9rem;
+}
+
+.rule-item.compact .rule-original {
+  font-size: 0.8rem;
+  line-height: 1.2;
 }
 
 .rule-replacement {
