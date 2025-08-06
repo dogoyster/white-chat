@@ -1,0 +1,90 @@
+.replacement-stats {
+  background-color: #2d2d30;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.stats-header h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.total-count {
+  background-color: #007acc;
+  color: #ffffff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.no-replacements {
+  text-align: center;
+  padding: 1rem;
+  color: #999999;
+  font-style: italic;
+}
+
+.stats-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.stat-item {
+  background-color: #3e3e42;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-info {
+  flex: 1;
+}
+
+.stat-original,
+.stat-replacement {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.stat-original:last-child,
+.stat-replacement:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  color: #999999;
+  font-size: 0.8rem;
+  min-width: 80px;
+}
+
+.value {
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.stat-count {
+  background-color: #4caf50;
+  color: #ffffff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+} 
