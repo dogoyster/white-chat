@@ -4,6 +4,7 @@ import ReplacementRules from './components/ReplacementRules';
 import ReplacementStats from './components/ReplacementStats';
 import { ReplacementRule, ReplacementResult } from './types/replacement';
 import { applyReplacements, getDefaultRules } from './utils/replacement';
+import { detectLanguageByContent, languageColors } from './utils/languageDetection';
 import './styles/App.css';
 
 const App: React.FC = () => {
@@ -11,9 +12,15 @@ const App: React.FC = () => {
   const [rules, setRules] = useState<ReplacementRule[]>(getDefaultRules());
   const [replacementResult, setReplacementResult] = useState<ReplacementResult | null>(null);
   const [sidebarWidth, setSidebarWidth] = useState(300);
+  const [detectedLanguage, setDetectedLanguage] = useState<string>('text');
 
   const handleCodeChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCode(event.target.value);
+    const newCode = event.target.value;
+    setCode(newCode);
+    
+    // 언어 자동 감지
+    const language = detectLanguageByContent(newCode);
+    setDetectedLanguage(language);
   };
 
   const handleRulesChange = (newRules: ReplacementRule[]) => {
@@ -65,6 +72,11 @@ const App: React.FC = () => {
           <div className="editor-container">
             <div className="editor-header">
               <h3>Input Code</h3>
+              {detectedLanguage !== 'text' && (
+                <div className="language-badge" style={{ backgroundColor: languageColors[detectedLanguage] }}>
+                  {detectedLanguage}
+                </div>
+              )}
             </div>
             <textarea
               className="code-textarea"
@@ -77,6 +89,11 @@ const App: React.FC = () => {
           <div className="viewer-container">
             <div className="viewer-header">
               <h3>Output Code</h3>
+              {detectedLanguage !== 'text' && (
+                <div className="language-badge" style={{ backgroundColor: languageColors[detectedLanguage] }}>
+                  {detectedLanguage}
+                </div>
+              )}
             </div>
             <div className="code-display">
               <pre>{replacementResult?.replacedCode || code}</pre>

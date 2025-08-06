@@ -53,12 +53,29 @@
   border-bottom: 1px solid #3e3e42;
 }
 
+.editor-header,
+.viewer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .editor-header h3,
 .viewer-header h3 {
   margin: 0;
   font-size: 1rem;
   font-weight: 500;
   color: #ffffff;
+}
+
+.language-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .code-textarea {
